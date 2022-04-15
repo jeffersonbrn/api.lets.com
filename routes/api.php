@@ -20,7 +20,7 @@ Route::group(['middleware' => 'api'], function($router) {
     Route::post('/packages/create', [PackagesController::class, 'createPackage']);
     Route::put('/packages/{id}/update', [PackagesController::class, 'updatePackage']);
     Route::delete('/packages/{id}/delete', [PackagesController::class, 'deletePackage']);
-    Route::put('/packages/{id}/updatePackagePosition', [PackagesController::class, 'updatePackagePosition']);
+    Route::put('/packages/{id}/updatepackageposition', [PackagesController::class, 'updatePackagePosition']);
     Route::post('/packages/{id}/uploadFile', [UploadsController::class, 'uploadFile']);
 
 

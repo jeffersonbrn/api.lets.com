@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+
 
 class Package extends Model
 {
@@ -29,8 +32,8 @@ class Package extends Model
         'deleted_at'
     ];
 
-    public function positions() {
-        return $this->belongsTo(Position::class);
+    public function positions(){
+        return $this->belongsTo(Position::class,'position_id');
     }
 
     public function uploads() {

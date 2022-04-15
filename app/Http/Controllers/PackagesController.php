@@ -11,7 +11,7 @@ class PackagesController extends Controller
 {
     public function listPackages()
     {
-        $packages = Package::all();
+        $packages = Package::with('positions:id,name')->get();
         if (!$packages) {
             return response()->json([
                 'message' => 'Not register found',
@@ -25,7 +25,7 @@ class PackagesController extends Controller
 
     public function viewPackage($id)
     {
-        $Package = Package::find($id);
+        $Package = Package::with('positions:id,name')->find($id);
         if (!$Package) {
             return response()->json([
                 'message' => 'Not register found',

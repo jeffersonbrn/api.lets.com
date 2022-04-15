@@ -40,9 +40,6 @@ class UploadsController extends Controller
             }
         } catch (\Exception $e) {
             return response()->json($e->getMessage(),Response::HTTP_NOT_FOUND);
-        }
-       
-       
-
+        }  
     }
 }
