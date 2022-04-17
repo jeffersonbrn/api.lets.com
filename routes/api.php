@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\PositionsController;
 use App\Http\Controllers\UploadsController;
+use App\Http\Controllers\LogPositionsController;
 
 Route::group(['middleware' => 'api'], function($router) {
     Route::post('/register', [AuthController::class, 'register']);
@@ -23,12 +24,13 @@ Route::group(['middleware' => 'api'], function($router) {
     Route::put('/packages/{id}/updatepackageposition', [PackagesController::class, 'updatePackagePosition']);
     Route::post('/packages/{id}/uploadFile', [UploadsController::class, 'uploadFile']);
 
-
     //positions
-
     Route::get('/positions', [PositionsController::class, 'listPositions']);
     Route::get('/positions/{id}/view', [PositionsController::class, 'viewPosition']);
     Route::post('/positions/create', [PositionsController::class, 'createPosition']);
     Route::put('/positions/{id}/update', [PositionsController::class, 'updatePosition']);
     Route::delete('/positions/{id}/delete', [PositionsController::class, 'deletePosition']);
+
+    //logs
+    Route::get('/logs/{id}', [LogPositionsController::class, 'listLogs']);
 });

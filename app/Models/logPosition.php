@@ -19,4 +19,8 @@ class logPosition extends Model
     protected $dates = [
         'deleted_at'
     ];
+
+    public function positions(){
+        return $this->belongsTo(Position::class,'position_id');
+    }
 }
