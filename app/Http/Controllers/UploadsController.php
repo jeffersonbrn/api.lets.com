@@ -10,6 +10,20 @@ use Illuminate\Support\Facades\Validator;
 
 class UploadsController extends Controller
 {
+    public function ListUploads($id)
+    {
+        $Uploads = Upload::where('package_id', $id)->get();
+        if (!$Uploads) {
+            return response()->json([
+                'message' => 'Not register found',
+            ], 201);
+        }
+        return response()->json([
+            'message' => 'List Uploads',
+            'packages' => $Uploads
+        ], 201);
+    }
+
     public function uploadFile(Request $request, $id){
         $validator = Validator::make($request->all(), [
             'file' => 'required|mimes:png,jpg,jpeg,doc,docx,pdf,txt,csv|max:4096' 

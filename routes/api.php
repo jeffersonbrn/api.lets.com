@@ -33,4 +33,7 @@ Route::group(['middleware' => 'api'], function($router) {
 
     //logs
     Route::get('/logs/{id}', [LogPositionsController::class, 'listLogs']);
+
+    //Uploads
+    Route::get('/uploads/{id}', [UploadsController::class, 'listUploads']);
 });
