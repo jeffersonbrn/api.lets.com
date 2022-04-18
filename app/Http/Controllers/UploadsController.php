@@ -25,19 +25,24 @@ class UploadsController extends Controller
     }
 
     public function uploadFile(Request $request, $id){
+
         $validator = Validator::make($request->all(), [
             'file' => 'required|mimes:png,jpg,jpeg,doc,docx,pdf,txt,csv|max:4096' 
         ]);
 
+        if($validator->fails()) {
+            return response()->json(['status' => 'Failed', 'message' => "Validation error", "errors" => $validator->errors()]);
+        }
+
         try {
-            if ($request->hasFile('files')) {
+            if ($request->hasFile('file')) {
 
                 $file = $request->file('file');
                  
                 // get File
-                $file       = $request->file('files');
+                $file       = $request->file('file');
                 // get Name
-                $name   = $file->getClientOriginalName();
+                $name   = $file->getFileName();
                 //Save on directory
                 $path  =  $file->store('public/files');
     
@@ -50,7 +55,7 @@ class UploadsController extends Controller
     
                 return response()->json([
                     'message' => "Upload successfully",
-                ], 201);         
+                ], 200);         
             }
         } catch (\Exception $e) {
             return response()->json($e->getMessage(),Response::HTTP_NOT_FOUND);
